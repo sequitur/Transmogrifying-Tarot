@@ -1,26 +1,30 @@
 <template>
   <div class="app">
     <div class="challenges-container">
-      <challenge class="current" :challenge="data.challenges[0]" v-on:click="attemptChallenge"></challenge>
-      <challenge v-for="challenge in data.challenges.slice(1)" :challenge="challenge"></challenge>
+      <challenge v-for="challenge in data.challenges" :challenge="challenge" v-on:click="attemptChallenge"></challenge>
     </div>
     <div class="cards-container">
       <card v-for="card in data.cards" :card="card" :index="$index"></card>
     </div>
-    <log :messages="data.messages"></log>
+    <div class="info-container">
+      <log :messages="data.messages"></log>
+      <description :content="data.desc"></description>
+    </div>
   </div>
 </template>
 <script>
 import Card from './Card.vue';
 import Log from './Log.vue';
 import Challenge from './challenge.vue';
+import Description from './description.vue';
 
 export default {
   props: ['data'],
   components: {
     card: Card,
     log: Log,
-    challenge: Challenge
+    challenge: Challenge,
+    description: Description
   },
   methods: {
     attemptChallenge () {
@@ -42,5 +46,13 @@ export default {
       height: 30%;
     }
   }
+
+.challenges-container,.cards-container {
+  margin-left: 10rem;
+}
+
+.info-container {
+  height: 40%;
+}
 
 </style>

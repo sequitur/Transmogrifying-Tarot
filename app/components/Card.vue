@@ -2,6 +2,7 @@
   <div class="card" v-on:click="pop" transition="draw">
     <h1>{{ card.title }} ({{ index }})</h1>
     <p>{{ card.description }}</p>
+    <p>{{ card.effect }}</p>
   </div>
 </template>
 <script>

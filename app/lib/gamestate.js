@@ -1,6 +1,5 @@
-function dieRoll (min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
-}
+import {dieRoll} from './util.js';
+import TarotCard from './TarotCard.js';
 
 export default class GameState {
   constructor () {
@@ -15,10 +14,7 @@ export default class GameState {
   }
 
   generateCard () {
-    this.cards.push({
-      title: `Card ${dieRoll(1, 50)}`,
-      description: "This is a card."
-    });
+    this.cards.push(new TarotCard);
   }
 
   generateChallenge () {

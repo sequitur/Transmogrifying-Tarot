@@ -11,9 +11,12 @@ export default {
 }
 </script>
 <style lang="less">
-  .log {
-    height: 40%;
-    background: #eee;
-    overflow-y: scroll;
-  }
+.log {
+  float: left;
+  height: 100%;
+  width: calc(60% - 3rem);
+  background: #eee;
+  overflow-y: scroll;
+  padding: 0 1rem;
+}
 </style>
