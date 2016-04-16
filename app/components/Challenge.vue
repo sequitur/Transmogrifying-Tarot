@@ -1,6 +1,6 @@
 <template>
   <div class="challenge" transition="defeat">
-    <h1>{{ challenge.title }} ({{ index }})</h1>
+    <h1>{{ challenge.title }}</h1>
     <p>{{ challenge.description }}</p>
   </div>
 </template>

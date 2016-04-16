@@ -49,6 +49,9 @@ export default {
 
 .challenges-container,.cards-container {
   margin-left: 10rem;
+  overflow: hidden;
+  padding: 0;
+  margin-bottom: 1rem;
 }
 
 .info-container {

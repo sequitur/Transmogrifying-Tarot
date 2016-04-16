@@ -1,7 +1,7 @@
 <template>
 <div class="description">
-  <p>
-    {{ content }}
+  <p v-for="line in content">
+    {{ line }}
   </p>
 </div>
 </template>

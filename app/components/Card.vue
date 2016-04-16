@@ -1,6 +1,6 @@
 <template>
   <div class="card" v-on:click="pop" transition="draw">
-    <h1>{{ card.title }} ({{ index }})</h1>
+    <h1>{{ card.title }}</h1>
     <p>{{ card.description }}</p>
     <p>{{ card.effect }}</p>
   </div>
@@ -23,7 +23,7 @@ export default {
   padding: 1rem;
   padding-top: .5rem;
   width: 10rem;
-  height: 80%;
+  height: 100%;
 
   h1 {
     font-size: 1rem;

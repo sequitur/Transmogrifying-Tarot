@@ -85,6 +85,168 @@ function roman (n) {
   return `${xs[tens]}${is[remainder]}`;
 }
 
+const MAJOR_ARCANA_EFFECTS = [
+  function () {
+    // Compound Eye
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // Proboscis
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // Talon
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // Hooked Beak
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // Oculus
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // Tentacle
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // Hooves
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // Mane
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // Batwing
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // Wheel
+    return {
+      message: "The Wheel refreshes your hand.",
+      effect: 'wheel'
+    };
+  },
+
+  function (character) {
+    // Molt
+    character.prime(function (character, card) {
+      if (!card.isMinorArcana) return {
+        message: "The invocation fizzles; those cards don't combine."
+      };
+      character[card.suit] = 0;
+      return {
+        message: `The Molt takes away all of your ${card.suit}`
+      };
+    });
+    return {
+      message: "You prepare to combine the Molt card with another card..."
+    };
+  },
+
+  function () {
+    // Lash
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // UNNAMED
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // Grin
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // Maw
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // Spine
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // Angler
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // Wolf
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // Dragon
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // Face
+    return {
+      message: "This card has no effect."
+    };
+  },
+
+  function () {
+    // Protoplasm
+    return {
+      message: "This card has no effect."
+    };
+  },
+];
+
+
+
+
 export default class TarotCard {
   constructor () {
     const number = dieRoll(0, 71);
@@ -104,10 +266,10 @@ export default class TarotCard {
   }
 
   get title () {
-    if (this.isMinorArcana) return `${MINOR_NAMES[this.cardVal]} of ${this.suit} (${this.refNum})`;
+    if (this.isMinorArcana) return `${MINOR_NAMES[this.cardVal]} of ${this.suit}`;
     if (this.refNum === 62) return "XIII";
-    if (this.refNum === 70) return "The Protoplasm (70)";
-    return `${roman(this.refNum - 49)} The ${this.arcanaName} (${this.refNum})`;
+    if (this.refNum === 70) return "The Protoplasm";
+    return `${roman(this.refNum - 49)} The ${this.arcanaName}`;
   }
 
   get description () {
@@ -116,5 +278,19 @@ export default class TarotCard {
 
   get effect () {
     return "Does something.";
+  }
+
+  cardEffect (character) {
+    if (!this.isMinorArcana) return MAJOR_ARCANA_EFFECTS[this.refNum - 50](character);
+    if (this.cardVal > 6) return {
+      message: "This card has no effect."
+    };
+    if (this.cardVal + 1 <= character[this.suit]) return {
+      message: "This card isn't strong enough."
+    };
+    character[this.suit] = this.cardVal + 1;
+    return {
+      message: `The card increases your ${this.suit} to ${this.cardVal + 1}`
+    }
   }
 }
